@@ -1,34 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react"
+
+import Header from "./components/Header"
+import HomePage from "./components/HomePage"
+import FileDisplay from "./components/FileDisplay"
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [file, setFile] = useState(null) // audio file
+  const [audioStream, setAudioStream] = useState(null) // live recording 
+
+  const isAudioAvailable = file || audioStream
+
+  function handleAudioReset() {
+    setFile(null)
+    setAudioStream(null)
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="flex flex-col max-w-[1000px] mx-auto w-full">
+      <section className="min-h-screen flex flex-col">
+        <Header />
+        {isAudioAvailable ? (
+          <FileDisplay 
+            file={file}
+            audioStream={audioStream}
+            handleAudioReset={handleAudioReset}
+          />
+        ) : (
+          <HomePage 
+            setFile={setFile} 
+            setAudioStream={setAudioStream} 
+          />
+        )}
+      </section>
+
+      <h1></h1>
+      <footer></footer>
+    </div>
   )
 }
 
