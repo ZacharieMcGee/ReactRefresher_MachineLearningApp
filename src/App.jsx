@@ -13,7 +13,7 @@ function App() {
   function handleAudioReset() {
     setFile(null)
     setAudioStream(null)
-  }
+  }  
 
   return (
     <div className="flex flex-col max-w-[1000px] mx-auto w-full">
