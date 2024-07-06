@@ -1,7 +1,8 @@
 export default function FileDisplay({
   file, 
   audioStream,
-  handleAudioReset
+  handleAudioReset,
+  handleFormSubmission
 }) {
   return (
     <main className="text-center flex-1 p-4 flex flex-col gap-3 sm:gap-4 justify-center pb-20 w-72 sm:w-96 max-w-full mx-auto">
@@ -14,7 +15,7 @@ export default function FileDisplay({
 
       <div className="flex items-center justify-between gap-4">
         <button onClick={handleAudioReset} className="text-slate-400 hover:text-blue-600 duration-200">Reset</button>
-        <button className="flex items-center gap-2 text-slate-400 specialBtn p-3 font-medium py-2 rounded-lg">
+        <button onClick={handleFormSubmission} className="flex items-center gap-2 text-slate-400 specialBtn p-3 font-medium py-2 rounded-lg">
           <p>Transcribe</p>
           <i className="fa-solid fa-pen-nib"></i>
         </button>
